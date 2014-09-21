@@ -44,4 +44,13 @@ class Helper{
             swap(a, i, r);
         }
     }
+
+    //used to verify that array contents are sorted
+    static boolean isSorted(Comparable[] a){
+        for( int i = 1; i < a.length; ++i ){
+            if( less(a[i], a[i-1]) )        return false;
+            //curr elmt is less than prev elmt than not sorted
+        }
+        return true;
+    }
 }

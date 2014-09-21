@@ -36,6 +36,8 @@ class Selection{
 
         System.out.println("sorted:");
         System.out.println(Helper.toString(my_array));
+
+        assert Helper.isSorted(my_array);
     
     }
 }
