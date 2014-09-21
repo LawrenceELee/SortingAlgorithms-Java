@@ -15,32 +15,9 @@ class Insertion{
             for( int j=i; j > 0; --j ){
                 //repeated "inserts" (swaps with) elmt in front of curr
                 //elmt until it is "in order"
-                if( less(a[j], a[j-1]) ) swap(a, j, j-1);
+                if( Helper.less(a[j], a[j-1]) ) Helper.swap(a, j, j-1);
             }
         }
-    }
-
-    private static boolean less(Comparable x, Comparable y){
-        return x.compareTo(y) < 0;
-    }
-
-    //we aren't doing any comparing, so we can just use any Objects
-    //instead of Comparable objects.
-    private static void swap(Object[] a, int i, int j){
-        Object tmp = a[i];
-        a[i]       = a[j];
-        a[j]       = tmp;
-    }
-
-    //helper to print out array contents
-    public static String toString(Comparable[] a){
-        StringBuilder val = new StringBuilder();
-
-        for(int i=0; i < a.length; ++i){
-            val.append(a[i]);
-            val.append(' ');
-        }
-        return val.toString();
     }
 
     //driver/tester
@@ -55,12 +32,12 @@ class Insertion{
         }
 
         System.out.println("original:");
-        System.out.println(toString(my_array));
+        System.out.println(Helper.toString(my_array));
 
         sort(my_array);
 
         System.out.println("sorted:");
-        System.out.println(toString(my_array));
+        System.out.println(Helper.toString(my_array));
     
     }
 }
