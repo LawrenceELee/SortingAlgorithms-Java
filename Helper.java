@@ -33,4 +33,15 @@ class Helper{
         }
         return val.toString();
     }
+
+    //helper to shuffle (mix-up) elmts in an array
+    //implementation of Knuth-Prath-Morris shuffle
+    static void shuffle(Object[] a){
+        int r, N=a.length;
+
+        for( int i=0; i < N; ++i ){
+            r = i + (int) (Math.random()*(N-i));
+            swap(a, i, r);
+        }
+    }
 }
