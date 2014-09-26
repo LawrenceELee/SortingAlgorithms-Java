@@ -1,6 +1,7 @@
 /** *************************************************
  * Heap sort.
  *
+ *
  * Use 1 as first idx as opposed to 0 as first. This is reflected
  * in sink, swap, less methods.
  *
@@ -11,6 +12,7 @@ class Heap{
     public static void sort(Comparable[] a){
         int N = a.length;
 
+        //first pass: build heap using bottom up method
         for( int k = N/2; k >= 1; --k ){
             sink(a, k, N);
         }
@@ -21,13 +23,23 @@ class Heap{
         }
     }
 
+    //sink "heavier" (larger) elmts to the bottom of heap
     private static void sink(Comparable[] a, int k, int N){
+        //bounds error check: are there still children in array
+        //k is parent idx
         while(2*k <= N){
-            int j = 2*k;
+            int j = 2*k; //idx j is child of parent k
+            
+            //pick the smaller of the 2 children
             if( j < N && less(a, j, j+1) )      j++;
+
+            //exit loop condition
             if(!less(a, k, j))                  break;
 
+            //swap elmt at parent and child idx
             swap(a, k, j);
+
+            //update parent idx
             k = j;
         }
     }

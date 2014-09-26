@@ -58,6 +58,22 @@ class Quick{
         return j; //return index of pivot
     }
 
+    //select kth smallest elmt in a[]
+    public static Comparable select(Comparable[] a, int k){
+        int lo=0, hi=a.length-1;
+
+        while( lo < hi ){
+            int pivot = partition(a, lo, hi);
+
+            if      ( pivot < k )   lo = pivot + 1;
+            //not in idx lower than pivot, so shrink lower boundry
+            else if ( pivot > k )   hi = pivot - 1;
+            //not in idx higher than pivot, so shrink upper boundry
+            else                    return a[k]; //pivot == k
+        }
+        return a[k]; //if lo == hi
+    }
+
 
     //driver/tester
     public static void main(String args[]){
@@ -73,12 +89,17 @@ class Quick{
         System.out.println("original:");
         System.out.println(Helper.toString(my_array));
 
+        System.out.println("median element: " + select(my_array, my_array.length/2));
+        //find median elmt. median is special case where kth is half.
+        System.out.println("3rd smallest element: " + select(my_array,3));
+
         sort(my_array);
 
         System.out.println("sorted:");
         System.out.println(Helper.toString(my_array));
 
         assert Helper.isSorted(my_array);
+
     }
 
 }
